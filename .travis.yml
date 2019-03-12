@@ -16,7 +16,7 @@ script:
 - mkdir q && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
 - echo $OD
 - echo $QLIBDIR
-- if [["x$OD" != "x" ]]; then
+- if [[ "x$OD" != "x" ]]; then
     curl -o q/q.zip -L $OD;
     unzip -d q q/q.zip;
   else
