@@ -12,14 +12,12 @@ before_install:
 - pyenv install $PY && pyenv local $PY
 script:
 - if [ $TRAVIS_OS_NAME = osx ]; then pyenv init - > pyenv.init && source pyenv.init ; fi
-- if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
-- mkdir q && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
-- if [[ "x$OD" != "x" ]]; then
-    curl -o q/q.zip -L $OD;
-    unzip -d q q/q.zip;
-  else
-    echo No kdb+;
-  fi
+# Useful for debugging any issues with conda
+- conda info -a
+- if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
+- conda install -c kx kdb # grab kdb+ with conda
+- cp -r $(conda info --base)/q q && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
+
 - make p.so
 - cp [ml]64/p.so q/$QLIBDIR;
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
