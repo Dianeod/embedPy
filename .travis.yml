@@ -20,7 +20,6 @@ script:
   else
     echo No kdb+;
   fi
-
 - make p.so
 - cp [ml]64/p.so q/$QLIBDIR;
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
