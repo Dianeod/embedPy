@@ -23,8 +23,8 @@ script:
 - make p.so
 - cp [ml]64/p.so q/$QLIBDIR;
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
-- if [[ "x$QLIC_KC" != "x" ]]; then 0N!"1";
-    echo -n $QLIC_KC |base64 --decode > q/kc.lic;0N!"2";
+- if [[ "x$QLIC_KC" != "x" ]]; then echo "1";
+    echo -n $QLIC_KC |base64 --decode > q/kc.lic;echo "2";
     pip3 -q install -r tests/requirements.txt;
     q test.q -s 4 -q;
   else
