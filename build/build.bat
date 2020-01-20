@@ -23,7 +23,7 @@ if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% 
 echo "h2"
 conda build --output conda-recipe > packagenames.txt                      || goto :error
 echo "h3"
-conda build -c kx conda-recipe --no-long-test-prefix                      || goto :error
+conda build -c kx conda-forge                                            || goto :error
 echo "h4"
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
