@@ -8,7 +8,7 @@ mkdir w64
 cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib                                  || goto :error
 move p.dll w64
 set PATH=%OP%
-echo "h0"
+
 :: Conda build
 set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
 call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
@@ -16,10 +16,15 @@ call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_
 conda install -y "conda-build<3.12"                                       || goto :error
 conda install -y anaconda-client conda                              || goto :error
 :: set up kdb+ if available
+echo "h0"
 if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
+echo "h1"
 if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% )
+echo "h2"
 conda build --output conda-recipe > packagenames.txt                      || goto :error
+echo "h3"
 conda build -c kx conda-recipe                                            || goto :error
+echo "h4"
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
 
