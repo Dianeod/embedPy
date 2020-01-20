@@ -23,5 +23,3 @@ conda build -c kx conda-recipe
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
 
-:error
-exit /b %errorLevel%
