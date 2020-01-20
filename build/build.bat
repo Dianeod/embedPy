@@ -19,7 +19,12 @@ conda install -y anaconda-client conda                              || goto :err
 if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% )
 conda build --output conda-recipe > packagenames.txt                      || goto :error
-conda build -c kx conda-recipe                                            
+conda build -c kx conda-recipe                                            || goto :mv
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
 
+:error
+exit /b %errorLevel%
+
+:mv
+echo "ok"
