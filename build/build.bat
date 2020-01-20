@@ -17,6 +17,7 @@ echo "h"
 conda install -y "conda-build<3.12"                                       || goto :error
 echo "h2"
 conda install -y anaconda-client conda=4.5.1                              || goto :error
+echo "h3"
 :: set up kdb+ if available
 if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% )
