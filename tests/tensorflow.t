@@ -5,7 +5,10 @@ p)def tf_func():
     import tensorflow
     if int(tensorflow.__version__[0]) < 2:
       tf=tensorflow
-      rnd=tf.randomUniform
+      if int(tensorflow.__version__[0]) < 1.15:
+         rnd=tf.randomUniform
+      else:
+        rnd = tf.random.uniform
     else:
       tf =tensorflow.compat.v1
       tf.disable_v2_behavior()
