@@ -1,6 +1,6 @@
 numpy
 beautifulsoup4
 pandas
-tensorflow
+tensorflow>=2.0
 scipy
 matplotlib
