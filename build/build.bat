@@ -8,7 +8,6 @@ mkdir w64
 cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib                                  || goto :error
 move p.dll w64
 set PATH=%OP%
-
 :: Conda build
 set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
 call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
@@ -21,6 +20,5 @@ conda build --output conda-recipe > packagenames.txt                      || got
 conda build -c kx conda-recipe                                            || goto :error
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
-
 :error
 exit /b %errorLevel%
