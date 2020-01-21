@@ -6,7 +6,7 @@ p)def tf_func():
     if int(tensorflow.__version__[0]) < 2:
       tf=tensorflow
       if int(tensorflow.__version__[0]) < 1.15:
-         rnd=tf.randomUniform
+         rnd=tf.random_uniform
       else:
         rnd = tf.random.uniform
     else:
