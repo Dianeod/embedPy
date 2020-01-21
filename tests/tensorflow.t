@@ -1,7 +1,8 @@
 .t.requiremod`tensorflow
 / tensorflow tests
 setenv[`TF_CPP_MIN_LOG_LEVEL]1#"2"
-p)import tensorflow as tf
+p)import tensorflow.compat.v1 as tf
+p)tf.disable_v2_behavior()
 p)def fit(x_data,y_data): #adapted from https://www.tensorflow.org/get_started
  W = tf.Variable(tf.random.uniform([1], -1.0, 1.0))
  b = tf.Variable(tf.zeros([1]))
