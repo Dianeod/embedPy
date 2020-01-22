@@ -8,7 +8,7 @@ git:
 
 before_install:
 - if [ $TRAVIS_OS_NAME = osx ]; then brew outdated pyenv || brew upgrade pyenv ; export PYTHON_CONFIGURE_OPTS="--enable-framework" ; fi
-- PY=$(pyenv install --list | grep -v - |grep -v [a-z]|grep -e  '^  3\.5\..*'|tail -1)
+- PY=$(pyenv install --list | grep -v - |grep -v [a-z]|grep -e  '^  3\..\..*'|tail -1)
 - pyenv install $PY && pyenv local $PY
 script:
 - if [ $TRAVIS_OS_NAME = osx ]; then pyenv init - > pyenv.init && source pyenv.init ; fi
@@ -83,7 +83,7 @@ jobs:
         - if [[ "x$QLIC_KC" != "x" ]]; then mkdir -p q; echo -n $QLIC_KC |base64 --decode > q/kc.lic; export QLIC=$(pwd)/q; fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - conda build conda-recipe --output -c kx > packagenames.txt
-        - conda build -c kx conda-recipe --no-long-test-prefix
+        - conda build -c kx conda-recipe
       deploy:
         provider: script
         script:
