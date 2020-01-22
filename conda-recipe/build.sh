@@ -1,5 +1,5 @@
 #!/bin/bash
-export QHOME=$BUILD_PREFIX/q
+export QHOME=$PREFIX/q
 if [ $(uname) == Linux ];
 then
 	QLIBDIR=l64

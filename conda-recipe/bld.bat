@@ -1,4 +1,4 @@
-set QHOME=%BUILD_PREFIX%\q
+set QHOME=%PREFIX%\q
 mkdir %QHOME%
 move p.q %QHOME% || goto :error
 move p.k %QHOME% || goto :error
