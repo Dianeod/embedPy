@@ -83,7 +83,7 @@ jobs:
         - if [[ "x$QLIC_KC" != "x" ]]; then mkdir -p q; echo -n $QLIC_KC |base64 --decode > q/kc.lic; export QLIC=$(pwd)/q; fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - conda build conda-recipe --output -c kx > packagenames.txt
-        - conda build -c kx conda-recipe
+        - conda build -c kx conda-recipe --no-long-test-prefix
       deploy:
         provider: script
         script:
