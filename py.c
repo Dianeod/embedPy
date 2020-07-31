@@ -44,7 +44,7 @@ Z K3(call){P a,k,p;I g;P(!pq(x)||!pq(z)&&z->t!=XD,ktrr())g=g1();a=pq(y)?p1(pg(y)
  p=PyObject_Call(pg(x),a,k);P(!p,(p0(a),p0(k),prg("call",g)))p0(a);p0(k);g0(g);R kfp(p);}
 Z K1(setconv){P(xt<100||xt>111,ktrr())r0(cf);cf=r1(x);R 0;}Z K1(getconv){R r1(cf);}Z K1(isp){R kb(pq(x));}
 
-int Py_LegacyWindowsFSEncodingFlag = 0
+int Py_LegacyWindowsFSEncodingFlag = 0;
 
 ZV*t;EXP K3(init){ZI i=0,tr=1;I f,g;S l,h;K n,v;P a,b,pyhome;P(i,0)l=zs(x),h=zs(y);f=pyl(l);free(l);
  P(!f,krr("libpython"))
