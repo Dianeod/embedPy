@@ -29,6 +29,7 @@ if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% 
 conda build --output conda-recipe > packagenames.txt                      || goto :error
 conda build -c kx conda-recipe                                            || goto :error
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
+pkg-config python-3.8-embed
 exit /b 0
 :error
 exit /b %errorLevel%
