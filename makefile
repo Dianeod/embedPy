@@ -37,6 +37,8 @@ embedPy.zip: p.so p.q p.k test.q tests LICENSE README.md
 embedPy-w64.zip: p.dll p.q p.k test.q tests LICENSE README.md
 	zip -r $@ $^
 
+ECHO “string”
+
 k.h:
 	curl -O -J -L https://github.com/KxSystems/kdb/raw/master/c/c/k.h
 q.lib:
