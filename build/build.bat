@@ -15,7 +15,7 @@ set PATH=C:\Perl;%PATH%
 perl -p -i.bak -e s/EMBEDPYVERSION/`\$\"%EMBEDPY_VERSION%\"/g p.q
 
 mkdir w64
-pkg-config python-3.8-embed --libs cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib                                  || goto :error
+cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib                                  || goto :error
 move p.dll w64
 set PATH=%OP%
 :: Conda build
