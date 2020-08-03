@@ -111,7 +111,7 @@ ZI pyl(S l){
  V*d=dlopen(l,RTLD_NOW|RTLD_GLOBAL);
 #define X(r,n,a) U(n=dlsym(d,#n))
 #endif
- P(!d,0)PF
+ P(!d,0)PF;
 #undef X
  R 1;}
 
