@@ -55,7 +55,7 @@ typedef struct _p _p,*P;struct _p{L r;P t;L n;union{P*p;P v[1];};};typedef struc
  X(P,Py_CompileString,(S,S,I))\
  X(P,PyCapsule_New,(V*,S,V*))\
  X(V*,PyCapsule_GetPointer,(P,S))\
- X(P,PyCFunction_New,(D*,P))\
+ X(P,PyCFunction_NewEx,(D*,P,P))\
  X(_p,_Py_TrueStruct,)\
  X(_p,_Py_FalseStruct,)\
  X(_p,_Py_NoneStruct,)\
@@ -86,6 +86,8 @@ typedef struct _p _p,*P;struct _p{L r;P t;L n;union{P*p;P v[1];};};typedef struc
  X(P,PyDict_Values,(P))\
 
 //https://docs.scipy.org/doc/numpy/reference/c-api.html https://github.com/numpy/numpy/blob/master/numpy/core/code_generators/numpy_api.py
+#undef PyCFunction_New
+#define PyCFunction_New(x,y) PyCFunction_NewEx(x,y,NULL)
 #define NF \
  X(_p,PyArray_Type,,2)\
  X(_p,PyGenericArrType_Type,,10)\
@@ -104,7 +106,7 @@ ZI tk(K x){I c[]={-1,0,-1,-1,-1,3,5,9,11,12,-1,-1,9,5,5,12,9,5,5,5},t=xt>0?xt:-x
 ZI pyl(S l){
 #if _WIN32
  HMODULE d=LoadLibrary(l);
-#define X(r,n,a) U(n=(T##n(*)a)GetProcAddress(d,#n))
+#define X(r,n,a) if(!(n=(T##n(*)a)GetProcAddress(d,#n)))printf("%s\n",#n)
 #else
  V*d=dlopen(l,RTLD_NOW|RTLD_GLOBAL);
 #define X(r,n,a) U(n=dlsym(d,#n))
