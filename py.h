@@ -106,7 +106,7 @@ ZI tk(K x){I c[]={-1,0,-1,-1,-1,3,5,9,11,12,-1,-1,9,5,5,12,9,5,5,5},t=xt>0?xt:-x
 ZI pyl(S l){
 #if _WIN32
  HMODULE d=LoadLibrary(l);
-#define X(r,n,a) if(!(n=(T##n(*)a)GetProcAddress(d,#n)))printf("%s\n",#n)
+#define X(r,n,a) U(n=(T##n(*)a)GetProcAddress(d,#n))
 #else
  V*d=dlopen(l,RTLD_NOW|RTLD_GLOBAL);
 #define X(r,n,a) U(n=dlsym(d,#n))
