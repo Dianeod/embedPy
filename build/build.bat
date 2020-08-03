@@ -15,6 +15,7 @@ set PATH=C:\Perl;%PATH%
 perl -p -i.bak -e s/EMBEDPYVERSION/`\$\"%EMBEDPY_VERSION%\"/g p.q
 
 mkdir w64
+python3-config --libs --embed
 cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib                                  || goto :error
 move p.dll w64
 set PATH=%OP%
@@ -29,7 +30,6 @@ if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% 
 conda build --output conda-recipe > packagenames.txt                      || goto :error
 conda build -c kx conda-recipe                                            || goto :error
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
-python3-config --libs --embed
 exit /b 0
 :error
 exit /b %errorLevel%
